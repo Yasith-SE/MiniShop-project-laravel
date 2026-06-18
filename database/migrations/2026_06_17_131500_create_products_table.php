@@ -17,7 +17,7 @@ return new class extends Migration
         $table->decimal('price', 8, 2); // E.g., 129.00
         $table->decimal('original_price', 8, 2)->nullable(); // For the crossed-out price
         $table->integer('discount_percentage')->nullable(); // E.g., 40 for -40%
-        $table->string('image_url')->nullable();
+        $table->longText('image_url')->nullable();
         $table->integer('stock')->default(0);
         $table->string('category')->default('General');
         $table->timestamps();
