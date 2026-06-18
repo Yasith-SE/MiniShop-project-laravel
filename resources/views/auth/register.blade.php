@@ -13,12 +13,19 @@
     </style>
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 py-10">
-    <div class="w-full max-w-[450px] bg-white border border-red-100 rounded-xl shadow-sm p-8">
+    <div class="w-full max-w-[450px] bg-white border border-red-100 rounded-xl shadow-sm p-8 relative">
+        
+        <!-- Become a Seller Button (Top Right) -->
+        <a href="{{ route('seller.register') }}" class="absolute -top-12 right-0 bg-white border border-red-200 text-[#A12B2B] font-bold text-sm px-4 py-2 rounded-t-lg hover:bg-red-50 transition shadow-sm flex items-center gap-2">
+            <span class="material-symbols-outlined text-[18px]">storefront</span> Become a seller
+        </a>
+
         <div class="text-center mb-8">
             <span class="inline-block text-[#A12B2B] font-bold text-sm mb-1">MiniShop</span>
             <h1 class="text-2xl font-bold text-gray-900">Create an Account</h1>
             <p class="text-sm text-gray-500 mt-1">Join us to start shopping today.</p>
         </div>
+
 
         @if ($errors->any())
             <div class="mb-4 text-red-600 text-sm text-center font-medium">

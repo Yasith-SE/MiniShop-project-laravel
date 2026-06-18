@@ -5,13 +5,13 @@
     
     <aside class="hidden md:flex flex-col w-64 bg-surface rounded-xl shadow-sm border border-outline-variant shrink-0 h-fit sticky top-32">
         <nav class="flex flex-col py-4">
-            <a class="flex items-center gap-3 px-6 py-3 bg-primary-fixed text-primary font-bold hover:bg-surface-variant mx-2 rounded-lg" href="#">
+            <a class="flex items-center gap-3 px-6 py-3 bg-red-50 text-primary font-bold hover:bg-gray-50 mx-2 rounded-lg" href="#">
                 <span class="material-symbols-outlined">bolt</span> Flash Sale
             </a>
-            <a class="flex items-center gap-3 px-6 py-3 text-tertiary hover:bg-surface-variant font-medium mx-2 rounded-lg mt-1" href="#">
+            <a class="flex items-center gap-3 px-6 py-3 text-gray-500 hover:bg-gray-50 font-medium mx-2 rounded-lg mt-1" href="#">
                 <span class="material-symbols-outlined">language</span> Global Collection
             </a>
-            <a class="flex items-center gap-3 px-6 py-3 text-tertiary hover:bg-surface-variant font-medium mx-2 rounded-lg mt-1" href="#">
+            <a class="flex items-center gap-3 px-6 py-3 text-gray-500 hover:bg-gray-50 font-medium mx-2 rounded-lg mt-1" href="#">
                 <span class="material-symbols-outlined">local_shipping</span> Free Shipping
             </a>
         </nav>
@@ -19,84 +19,136 @@
 
     <div class="flex-1 flex flex-col gap-8 w-full min-w-0">
         
-        <section class="relative w-full rounded-xl overflow-hidden aspect-[21/9] md:aspect-[3/1] bg-surface-variant shadow-sm group">
-            <img alt="Promo Banner" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkcDukGnmVYF81dcpClGmLb5raMnrPmOSCBLHRHi5ibZESmS-hlvmw0yPJlX0Vlbf7Z8GPvcG1dA5_wcWYn_xCk24SSKo5NNEZhR3rUm2rPQ0iOEs6thFQqZhD34GiLwvNiI1haMFATfLGGO6s66W-TAXxKjy1Fn7zpvFUQ0wpkQ9FGRgMJnqTYutlOOiqVQ8ohLmERA4Zr_pLppAPRkT9Ht3wfqWywszAFuT-9cSoH13TqPP-x2iNYDD2z5vwvtU47cj-3CKbiD4"/>
-            <div class="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent flex flex-col justify-center px-8 md:px-16">
-                <span class="text-primary-fixed text-[14px] uppercase tracking-wider mb-2">Limited Time Offer</span>
+        <section class="relative w-full rounded-xl overflow-hidden aspect-[21/9] md:aspect-[3/1] bg-gray-200 shadow-sm group">
+            <img alt="Promo Banner" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?q=80&w=2070&auto=format&fit=crop"/>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/80 to-transparent flex flex-col justify-center px-8 md:px-16">
+                <span class="text-orange-400 text-[14px] font-bold uppercase tracking-wider mb-2">Limited Time Offer</span>
                 <h1 class="text-white text-[40px] font-bold mb-4 max-w-md">Mega Flash Sale Weekend</h1>
-                <p class="text-white/90 text-[18px] mb-6 max-w-md hidden md:block">Get up to 70% off on top electronics, fashion, and home goods.</p>
-                <button class="bg-secondary text-white text-[14px] px-8 py-3 rounded w-fit hover:opacity-90 transition-colors shadow-sm">Shop Now</button>
+                <p class="text-gray-300 text-[16px] mb-6 max-w-md hidden md:block">Get up to 70% off on top electronics, fashion, and home goods.</p>
+                <button class="bg-orange-600 text-white font-bold text-[14px] px-8 py-3 rounded-lg w-fit hover:bg-orange-700 transition-colors shadow-sm">Shop Now</button>
             </div>
         </section>
 
         <section>
-            <h2 class="text-[24px] font-bold text-on-surface mb-4">Top Categories</h2>
+            <h2 class="text-[24px] font-bold text-gray-900 mb-4">Top Categories</h2>
             <div class="grid grid-cols-3 md:grid-cols-6 gap-4">
-                <a class="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border border-outline-variant hover:shadow-md transition-shadow" href="#">
-                    <div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+                <a class="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-shadow" href="#">
+                    <div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-primary">
                         <span class="material-symbols-outlined">smartphone</span>
                     </div>
-                    <span class="text-[14px] text-center">Phones</span>
+                    <span class="text-[14px] font-medium text-gray-700">Phones</span>
                 </a>
-                <a class="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border border-outline-variant hover:shadow-md transition-shadow" href="#">
-                    <div class="w-12 h-12 rounded-full bg-orange-100 flex items-center justify-center text-secondary">
+                <a class="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-shadow" href="#">
+                    <div class="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center text-orange-600">
                         <span class="material-symbols-outlined">checkroom</span>
                     </div>
-                    <span class="text-[14px] text-center">Apparel</span>
+                    <span class="text-[14px] font-medium text-gray-700">Apparel</span>
                 </a>
-                <a class="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border border-outline-variant hover:shadow-md transition-shadow" href="#">
-                    <div class="w-12 h-12 rounded-full bg-primary-fixed flex items-center justify-center text-primary">
+                <a class="flex flex-col items-center gap-2 p-4 bg-white rounded-lg border border-gray-200 hover:shadow-md transition-shadow" href="#">
+                    <div class="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center text-primary">
                         <span class="material-symbols-outlined">sports_esports</span>
                     </div>
-                    <span class="text-[14px] text-center">Gaming</span>
+                    <span class="text-[14px] font-medium text-gray-700">Gaming</span>
                 </a>
             </div>
         </section>
 
-        <section>
-            <div class="flex items-center justify-between mb-4 border-b border-outline-variant pb-2">
+        <section x-data="{ isModalOpen: false, activeProduct: {} }">
+            <div class="flex items-center justify-between mb-4 border-b border-gray-200 pb-2">
                 <div class="flex items-center gap-2 text-primary">
                     <span class="material-symbols-outlined text-[24px]">bolt</span>
-                    <h2 class="text-[24px] font-bold text-on-surface">On Sale Now</h2>
+                    <h2 class="text-[24px] font-bold text-gray-900">On Sale Now</h2>
                 </div>
             </div>
             
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-                
-                <div class="bg-white border border-outline-variant rounded-lg overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300 relative">
-                    <div class="absolute top-2 left-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-sm z-10">-40%</div>
+                @foreach($products as $product)
+                <div class="bg-white border border-gray-200 rounded-lg overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300 relative">
+                    @if($product->discount_percentage)
+                        <div class="absolute top-2 left-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-md z-10">-{{ $product->discount_percentage }}%</div>
+                    @endif
+                    
                     <div class="aspect-square bg-gray-50 overflow-hidden">
-                        <img alt="Headphones" class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500 p-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDY0frOEIhqyMqOncOneUewmzzoQfiCe97FLJRihAhQ_ecpPHrKIWJS-SJ3B2Bm9UsYtT2s0vQWjAyk5qal7ZNL9bjDKxokWDw90lu2XiDqA7nw1L_nsn8fi47tPQ__PfzQlCYMC_fABzesFquA0EVhqwYqEln81gs5Sr4ecCTPHegWBAPPVBZq9FtR02jNpAJJhmy0FVLTPuexIf_CMiR4BOWP7F3UZS7nw_IrEOmYq0jUJkSY_5T44D6LQmuT4lOjytPXcmsnyvU"/>
+                        <img alt="{{ $product->name }}" class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500 p-4" src="{{ $product->image_url }}"/>
                     </div>
+                    
                     <div class="p-4 flex flex-col flex-grow">
-                        <h3 class="text-[14px] text-on-surface line-clamp-2 mb-2 group-hover:text-primary transition-colors">Premium Wireless ANC Headphones Model X</h3>
+                        <h3 class="text-[14px] font-medium text-gray-900 line-clamp-2 mb-2 group-hover:text-primary transition-colors">{{ $product->name }}</h3>
                         <div class="mt-auto">
                             <div class="flex items-baseline gap-2 mb-1">
-                                <span class="text-[24px] font-bold text-secondary">$129.00</span>
-                                <span class="text-sm text-tertiary line-through">$215.00</span>
+                                <span class="text-[20px] font-bold text-orange-600">Rs. {{ number_format($product->price, 2) }}</span>
+                                @if($product->original_price)
+                                    <span class="text-xs text-gray-400 line-through">Rs. {{ number_format($product->original_price, 2) }}</span>
+                                @endif
                             </div>
-                            <button class="w-full py-2 mt-3 bg-white border border-primary text-primary text-[14px] font-bold rounded hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
+                            
+                            <button 
+                                @click="isModalOpen = true; activeProduct = { 
+                                    name: '{{ addslashes($product->name) }}', 
+                                    price: '{{ number_format($product->price, 2) }}', 
+                                    oldPrice: '{{ $product->original_price ? number_format($product->original_price, 2) : '' }}', 
+                                    image: '{{ $product->image_url }}',
+                                    category: '{{ addslashes($product->category) }}'
+                                }" 
+                                class="w-full py-2 mt-3 bg-white border border-primary text-primary text-[14px] font-bold rounded-lg hover:bg-primary hover:text-white transition-colors">
+                                Add to Cart
+                            </button>
                         </div>
                     </div>
                 </div>
+                @endforeach
+            </div>
 
-                <div class="bg-white border border-outline-variant rounded-lg overflow-hidden flex flex-col group hover:shadow-lg transition-all duration-300 relative">
-                    <div class="absolute top-2 left-2 bg-primary text-white text-xs font-bold px-2 py-1 rounded-sm z-10">-25%</div>
-                    <div class="aspect-square bg-gray-50 overflow-hidden">
-                        <img alt="Watch" class="w-full h-full object-cover mix-blend-multiply group-hover:scale-105 transition-transform duration-500 p-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUaPRqXfOaHqmSjUaMjTJ0g0J9G1juZNR4yHq_ovAhwK6yDsI64XaxnKXJea0AuJGHLeWjgC_DPSWublR1oDEnSpmMEmgWBcLLNHgRA7zSpesCd_PVjiCr3WWRg7ds5Kb2O75D8lvJzzQmv_kZfXHvWyWgy85jfDoPdEl5QhxwxW-kkjz3-s6n7h4ejYv3RmIIlCeFbRW5UJOOAZnMn1vqnsSDg9YqRK0Gft2hzeGQeuPuvB3q7V-HxUN2O57p_lFUNHa4M05L4o4"/>
+            <div x-show="isModalOpen" style="display: none;" class="fixed inset-0 z-[100] flex items-center justify-center bg-black bg-opacity-60 backdrop-blur-sm p-4" x-transition>
+                <div @click.away="isModalOpen = false" class="bg-white rounded-2xl shadow-2xl w-full max-w-4xl overflow-hidden flex flex-col md:flex-row relative">
+                    
+                    <button @click="isModalOpen = false" class="absolute top-4 right-4 bg-gray-100 hover:bg-red-100 hover:text-red-600 text-gray-500 rounded-full p-2 transition z-10">
+                        <span class="material-symbols-outlined text-[20px] block">close</span>
+                    </button>
+
+                    <div class="w-full md:w-1/2 bg-[#f4f4f6] p-8 flex items-center justify-center">
+                        <img :src="activeProduct.image" class="mix-blend-multiply w-full max-w-sm drop-shadow-xl" alt="Product View">
                     </div>
-                    <div class="p-4 flex flex-col flex-grow">
-                        <h3 class="text-[14px] text-on-surface line-clamp-2 mb-2 group-hover:text-primary transition-colors">Minimalist Smart Watch Series 5</h3>
-                        <div class="mt-auto">
-                            <div class="flex items-baseline gap-2 mb-1">
-                                <span class="text-[24px] font-bold text-secondary">$89.99</span>
-                                <span class="text-sm text-tertiary line-through">$119.99</span>
+
+                    <div class="w-full md:w-1/2 p-8 md:p-10 flex flex-col">
+                        <p class="text-sm text-gray-500 font-bold tracking-wider uppercase mb-1" x-text="activeProduct.category"></p>
+                        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-4 leading-tight" x-text="activeProduct.name"></h2>
+                        
+                        <div class="flex items-center gap-1 mb-6">
+                            <span class="material-symbols-outlined text-yellow-400 text-[18px]">star</span>
+                            <span class="material-symbols-outlined text-yellow-400 text-[18px]">star</span>
+                            <span class="material-symbols-outlined text-yellow-400 text-[18px]">star</span>
+                            <span class="material-symbols-outlined text-yellow-400 text-[18px]">star</span>
+                            <span class="material-symbols-outlined text-yellow-400 text-[18px]">star_half</span>
+                            <span class="text-sm text-gray-500 ml-2">(1,245 Ratings)</span>
+                        </div>
+
+                        <div class="flex items-end gap-3 mb-6">
+                            <span class="text-4xl font-bold text-orange-600">Rs. <span x-text="activeProduct.price"></span></span>
+                            <template x-if="activeProduct.oldPrice">
+                                <span class="text-xl text-gray-400 line-through mb-1">Rs. <span x-text="activeProduct.oldPrice"></span></span>
+                            </template>
+                        </div>
+
+                        <div class="mb-8">
+                            <label class="block text-sm font-bold text-gray-900 mb-3">Quantity</label>
+                            <div class="flex items-center border border-gray-300 rounded-lg w-fit">
+                                <button class="px-4 py-2 hover:bg-gray-100 text-gray-600 font-bold text-lg rounded-l-lg">-</button>
+                                <input type="text" value="1" class="w-16 text-center border-none py-2 focus:ring-0 font-bold text-gray-900" readonly>
+                                <button class="px-4 py-2 hover:bg-gray-100 text-gray-600 font-bold text-lg rounded-r-lg">+</button>
                             </div>
-                            <button class="w-full py-2 mt-3 bg-white border border-primary text-primary text-[14px] font-bold rounded hover:bg-primary hover:text-white transition-colors">Add to Cart</button>
+                        </div>
+
+                        <div class="flex gap-4 mt-auto">
+                            <button class="flex-1 bg-white border-2 border-primary text-primary font-bold py-3 md:py-4 rounded-xl hover:bg-red-50 transition flex justify-center items-center gap-2">
+                                <span class="material-symbols-outlined">shopping_cart</span> Add to Cart
+                            </button>
+                            <button class="flex-1 bg-orange-600 text-white font-bold py-3 md:py-4 rounded-xl hover:bg-orange-700 transition shadow-lg shadow-orange-600/30">
+                                Buy Now
+                            </button>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
