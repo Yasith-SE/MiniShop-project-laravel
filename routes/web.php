@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
@@ -12,6 +13,8 @@ use App\Http\Controllers\ProfileController;
 Route::get('/register/seller', function () {
     return view('auth.seller-register');
 })->middleware('guest')->name('seller.register');
+
+Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 
 // Public Storefront
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -41,6 +44,10 @@ Route::middleware(['auth'])->prefix('seller')->name('seller.')->group(function (
     Route::get('/dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
     Route::get('/products', [SellerController::class, 'products'])->name('products');
     Route::get('/products/create', [SellerController::class, 'createProduct'])->name('products.create');
+
+    Route::post('/products', [SellerController::class, 'storeProduct'])->name('products.store');
+
+    Route::get('/orders', [SellerController::class, 'orders'])->name('orders');
 });
 
 // Profile Routes (This was missing!)
