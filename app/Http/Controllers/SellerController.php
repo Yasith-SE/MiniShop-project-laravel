@@ -2,23 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Product;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SellerController extends Controller
 {
-    // 1. Seller Dashboard View
     public function dashboard()
     {
-        $totalProducts = Product::count(); 
-
-        // Real Data Variables (Orders ආවම මේවා auto හැදෙන්න හදමු)
-        $totalSales = 0; 
+        $totalProducts = Product::where('seller_id', Auth::id())->count();
+        $totalSales = 0;
         $storeRating = 0.0;
         $totalReviews = 0;
 
         $sellerLevel = 0;
-        $nextLevelTarget = 10000; 
+        $nextLevelTarget = 10000;
 
         if ($totalSales >= 50000) {
             $sellerLevel = 4;
@@ -31,80 +29,80 @@ class SellerController extends Controller
             $nextLevelTarget = 25000;
         } elseif ($totalSales > 0) {
             $sellerLevel = 1;
-            $nextLevelTarget = 10000;
         }
 
         $salesToNextLevel = $nextLevelTarget - $totalSales;
-        $progressPercentage = ($totalSales / $nextLevelTarget) * 100;
+        $progressPercentage = min(100, ($totalSales / $nextLevelTarget) * 100);
 
         return view('seller.dashboard', compact(
-            'totalProducts', 
-            'totalSales', 
-            'storeRating', 
-            'totalReviews', 
-            'sellerLevel', 
-            'salesToNextLevel', 
+            'totalProducts',
+            'totalSales',
+            'storeRating',
+            'totalReviews',
+            'sellerLevel',
+            'salesToNextLevel',
             'progressPercentage'
         ));
     }
 
-    // 2. Add New Product View
     public function createProduct()
     {
         return view('seller.create_product');
     }
 
-    // 3. Save Product to Database
     public function storeProduct(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
             'category' => 'required|string',
-            'price' => 'required|numeric',
-            'stock' => 'required|integer',
+            'price' => 'required|numeric|min:0',
+            'discount_price' => 'nullable|numeric|min:0|lte:price',
+            'stock' => 'required|integer|min:0',
             'image' => 'required|image|mimes:jpeg,png,jpg,webp|max:5120',
         ]);
 
-        $imagePath = null;
+        $imageUrl = 'https://via.placeholder.com/500';
+
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('products', 'public');
-            $imageUrl = asset('storage/' . $imagePath);
+            $imageUrl = asset('storage/'.$imagePath);
         }
 
-        $originalPrice = $request->price;
-        $sellingPrice = $request->discount_price ?: $originalPrice;
+        $originalPrice = (float) $request->price;
+        $sellingPrice = $request->filled('discount_price') ? (float) $request->discount_price : $originalPrice;
         $discountPercentage = null;
-        
-        if ($request->discount_price && $originalPrice > 0) {
+
+        if ($request->filled('discount_price') && $originalPrice > 0) {
             $discountPercentage = round((($originalPrice - $sellingPrice) / $originalPrice) * 100);
         }
 
         Product::create([
+            'seller_id' => Auth::id(),
             'name' => $request->name,
             'category' => $request->category,
             'price' => $sellingPrice,
             'original_price' => $originalPrice,
             'discount_percentage' => $discountPercentage,
             'stock' => $request->stock,
-            'image_url' => $imageUrl ?? 'https://via.placeholder.com/500',
+            'image_url' => $imageUrl,
         ]);
 
-        return redirect()->route('seller.dashboard')->with('success', 'Product published successfully!');
+        return redirect()->route('seller.products')->with('success', 'Product published successfully!');
     }
 
-    // 4. View Seller's Product Inventory
     public function products()
     {
-        $products = Product::latest()->paginate(10);
+        $products = Product::where('seller_id', Auth::id())
+            ->latest()
+            ->paginate(10);
+
         return view('seller.products', compact('products'));
     }
 
-    // 5. View Seller's Orders
     public function orders()
     {
-        // Dummy data අයින් කරලා හිස් Array එකක් යවනවා ඇත්ත Orders එනකන්
         $orders = [];
-        
+
         return view('seller.orders', compact('orders'));
     }
 }

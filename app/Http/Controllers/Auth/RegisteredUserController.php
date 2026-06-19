@@ -15,38 +15,44 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
     public function create(): View
     {
         return view('auth.register');
     }
 
     /**
-     * Handle an incoming registration request.
-     *
      * @throws ValidationException
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
+        $isSeller = $request->boolean('is_seller');
+
+        $rules = [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::defaults()],
-        ]);
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ];
 
-        $role = $request->has('is_seller') ? 'seller' : 'customer';
+        if ($isSeller) {
+            $rules = array_merge($rules, [
+                'dob' => ['required', 'date', 'before:today'],
+                'address' => ['required', 'string', 'max:255'],
+                'phone' => ['required', 'string', 'max:30'],
+                'postal_code' => ['required', 'string', 'max:20'],
+            ]);
+        }
+
+        $validated = $request->validate($rules);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-            'role' => $role,
-            'dob' => $request->dob,
-            'address' => $request->address,
-            'phone' => $request->phone,
-            'postal_code' => $request->postal_code,
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
+            'role' => $isSeller ? 'seller' : 'customer',
+            'dob' => $validated['dob'] ?? null,
+            'address' => $validated['address'] ?? null,
+            'phone' => $validated['phone'] ?? null,
+            'postal_code' => $validated['postal_code'] ?? null,
         ]);
 
         event(new Registered($user));

@@ -12,10 +12,10 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#ad292f",
-                        "secondary": "#fe752a", // Seller Orange
-                        "background": "#f9f9fb",
-                        "surface": "#ffffff",
+                        primary: "#ad292f",
+                        secondary: "#fe752a",
+                        background: "#f9f9fb",
+                        surface: "#ffffff",
                         "on-surface": "#1a1c1d"
                     }
                 }
@@ -24,34 +24,36 @@
     </script>
 </head>
 <body class="bg-background text-on-surface font-sans min-h-screen flex">
-
     <aside class="fixed left-0 top-0 h-screen w-64 flex flex-col py-6 bg-surface border-r border-gray-200 z-40">
-        <div class="px-6 mb-8 flex items-center gap-3">
-            <div>
-                <div class="font-bold text-primary text-xl">MiniShop Seller</div>
-                <div class="text-sm text-gray-500 mt-2 font-bold">{{ Auth::user()->name }}</div>
-            </div>
+        <div class="px-6 mb-8">
+            <div class="font-bold text-primary text-xl">MiniShop Seller</div>
+            <div class="text-sm text-gray-500 mt-2 font-bold">{{ Auth::user()->name }}</div>
         </div>
+
         <nav class="flex-1 px-4">
             <ul class="flex flex-col gap-2">
                 <li>
-                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-secondary font-bold bg-orange-50" href="{{ route('seller.dashboard') }}">
+                    <a href="{{ route('seller.dashboard') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg {{ request()->routeIs('seller.dashboard') ? 'text-[#fe752a] bg-orange-50 font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#fe752a] font-medium transition-colors' }}">
                         <span class="material-symbols-outlined">dashboard</span> Dashboard
                     </a>
                 </li>
                 <li>
-                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50" href="{{ route('seller.products') }}">
+                    <a href="{{ route('seller.products') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg {{ request()->routeIs('seller.products*') ? 'text-[#fe752a] bg-orange-50 font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#fe752a] font-medium transition-colors' }}">
                         <span class="material-symbols-outlined">inventory_2</span> My Products
                     </a>
                 </li>
                 <li>
-                    <a class="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-600 hover:bg-gray-50" href="#">
+                    <a href="{{ route('seller.orders') }}" class="flex items-center gap-3 px-4 py-3 rounded-lg {{ request()->routeIs('seller.orders') ? 'text-[#fe752a] bg-orange-50 font-bold' : 'text-gray-600 hover:bg-gray-50 hover:text-[#fe752a] font-medium transition-colors' }}">
                         <span class="material-symbols-outlined">receipt_long</span> Orders
                     </a>
                 </li>
             </ul>
         </nav>
-        <div class="px-6 mt-auto">
+
+        <div class="px-6 mt-auto space-y-3">
+            <a href="{{ route('home') }}" class="flex items-center gap-3 text-gray-600 hover:text-primary">
+                <span class="material-symbols-outlined">store</span> Storefront
+            </a>
             <form method="POST" action="{{ route('logout') }}">
                 @csrf
                 <button type="submit" class="flex items-center gap-3 text-gray-600 hover:text-primary w-full">
@@ -64,6 +66,5 @@
     <main class="ml-64 flex-1 p-8">
         @yield('seller_content')
     </main>
-
 </body>
 </html>

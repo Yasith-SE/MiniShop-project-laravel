@@ -4,19 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Product extends Model
 {
     use HasFactory;
 
-    // Database එකට save කරන්න අවසර දෙන columns ටික
     protected $fillable = [
-        'name', 
-        'category', 
-        'price', 
-        'original_price', 
-        'discount_percentage', 
-        'image_url', 
-        'stock'
+        'seller_id',
+        'name',
+        'category',
+        'price',
+        'original_price',
+        'discount_percentage',
+        'image_url',
+        'stock',
     ];
+
+    public function seller(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'seller_id');
+    }
 }

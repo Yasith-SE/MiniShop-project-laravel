@@ -61,10 +61,15 @@
                 <!-- Right Side Icons -->
                 <div class="flex items-center gap-6 shrink-0">
                     <!-- Cart -->
+                    @php
+                        $cartCount = Auth::check() ? \App\Models\Cart::where('user_id', Auth::id())->sum('quantity') : 0;
+                    @endphp
                     <a href="#" class="flex flex-col items-center hover:opacity-90 transition-all relative">
                         <span class="material-symbols-outlined text-[28px]">shopping_cart</span>
                         <span class="font-label-md text-[14px] mt-1 hidden md:block">Cart</span>
-                        <span class="absolute -top-1 -right-2 bg-secondary text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-primary">2</span>
+                        @if($cartCount > 0)
+                            <span class="absolute -top-1 -right-2 bg-secondary text-white text-[10px] font-bold w-5 h-5 rounded-full flex items-center justify-center border-2 border-primary">{{ $cartCount }}</span>
+                        @endif
                     </a>
 
                     <!-- User Profile & Auth -->
@@ -143,7 +148,7 @@
             </div>
             <div class="flex flex-wrap gap-3 text-xs font-bold text-gray-700">
                 <a href="#" class="hover:text-primary transition-colors border border-gray-400 px-3 py-1.5 rounded bg-white">Help & Support</a>
-                <a href="#" class="hover:text-primary transition-colors border border-gray-400 px-3 py-1.5 rounded bg-white">Become a Seller</a>
+                <a href="{{ route('seller.register') }}" class="hover:text-primary transition-colors border border-gray-400 px-3 py-1.5 rounded bg-white">Become a Seller</a>
                 <a href="#" class="hover:text-primary transition-colors border border-gray-400 px-3 py-1.5 rounded bg-white">About Us</a>
                 <a href="#" class="hover:text-primary transition-colors border border-gray-400 px-3 py-1.5 rounded bg-white">Privacy Policy</a>
             </div>

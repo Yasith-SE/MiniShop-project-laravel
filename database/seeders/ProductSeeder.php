@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -9,13 +10,16 @@ class ProductSeeder extends Seeder
 {
     public function run(): void
     {
-        DB::table('products')->insert([
+        $sellerId = User::where('email', 'seller@minishop.com')->value('id');
+        $now = now();
+
+        $products = [
             [
                 'name' => 'Premium Wireless ANC Headphones Model X',
                 'price' => 129.00,
                 'original_price' => 215.00,
                 'discount_percentage' => 40,
-                'image_url' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuDY0frOEIhqyMqOncOneUewmzzoQfiCe97FLJRihAhQ_ecpPHrKIWJS-SJ3B2Bm9UsYtT2s0vQWjAyk5qal7ZNL9bjDKxokWDw90lu2XiDqA7nw1L_nsn8fi47tPQ__PfzQlCYMC_fABzesFquA0EVhqwYqEln81gs5Sr4ecCTPHegWBAPPVBZq9FtR02jNpAJJhmy0FVLTPuexIf_CMiR4BOWP7F3UZS7nw_IrEOmYq0jUJkSY_5T44D6LQmuT4lOjytPXcmsnyvU',
+                'image_url' => 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=500&auto=format&fit=crop',
                 'stock' => 15,
                 'category' => 'Electronics',
             ],
@@ -24,7 +28,7 @@ class ProductSeeder extends Seeder
                 'price' => 89.99,
                 'original_price' => 119.99,
                 'discount_percentage' => 25,
-                'image_url' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuBUaPRqXfOaHqmSjUaMjTJ0g0J9G1juZNR4yHq_ovAhwK6yDsI64XaxnKXJea0AuJGHLeWjgC_DPSWublR1oDEnSpmMEmgWBcLLNHgRA7zSpesCd_PVjiCr3WWRg7ds5Kb2O75D8lvJzzQmv_kZfXHvWyWgy85jfDoPdEl5QhxwxW-kkjz3-s6n7h4ejYv3RmIIlCeFbRW5UJOOAZnMn1vqnsSDg9YqRK0Gft2hzeGQeuPuvB3q7V-HxUN2O57p_lFUNHa4M05L4o4',
+                'image_url' => 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=500&auto=format&fit=crop',
                 'stock' => 45,
                 'category' => 'Electronics',
             ],
@@ -33,7 +37,7 @@ class ProductSeeder extends Seeder
                 'price' => 59.00,
                 'original_price' => 70.00,
                 'discount_percentage' => 15,
-                'image_url' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuBU4bJgW7CJaij2LuPwJet1XUmhXjy8EPYI7e_acYsaPiKAc_hDPY0gKAVdg6F_6X8SLQTzy_IpnoET06SBPivwt0vTpJPITEsDQTymC_C2MAkMaOCZ_Ob6UqaXgPZl7NiFRHvYl_unrDHP3uhgqe0117fiVTukgchCtupzcgCX7MBVNdK-Ado1AABy46C9aHa3o477ZPLHwcjwdvGQNxO2tILxdaOxh5OMybSI3OZ3YNI0erS6Iy_7qQCgUoMrIhMoOSKuETph4F0',
+                'image_url' => 'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=500&auto=format&fit=crop',
                 'stock' => 12,
                 'category' => 'Electronics',
             ],
@@ -42,11 +46,10 @@ class ProductSeeder extends Seeder
                 'price' => 65.00,
                 'original_price' => 130.00,
                 'discount_percentage' => 50,
-                'image_url' => 'https://lh3.googleusercontent.com/aida-public/AB6AXuD_RiUaN7-Zo2CHS6iRS5Y7YnQbkc-996L7gJPSW1sPGmqAsIivRcl2EMHljN2CIRdNN9UX0-gNWkqmvr3Zb43W5teXs7sMm9yPK8Q-Fw2QcPGCg4WQc7u7-AxWLsoJ1uApoBSC6ahhNlvq9oouFJH6UZF98dYwHuNi4G6rSDUxLS-8oHuwXZ_Jiv2xlHgICmjo5DIEVCOkGS3U_GJZfj6X4OcOPXu7axTdKSwzod2gWcN68NLkMjJVZKIAkW10jIO3040D_LJ7UCk',
+                'image_url' => 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=500&auto=format&fit=crop',
                 'stock' => 88,
                 'category' => 'Apparel',
             ],
-            // NEW PRODUCTS ADDED BELOW
             [
                 'name' => 'Ergonomic Gaming Chair Pro',
                 'price' => 199.00,
@@ -82,7 +85,18 @@ class ProductSeeder extends Seeder
                 'image_url' => 'https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?q=80&w=500&auto=format&fit=crop',
                 'stock' => 60,
                 'category' => 'Home',
-            ]
-        ]);
+            ],
+        ];
+
+        foreach ($products as $product) {
+            DB::table('products')->updateOrInsert(
+                ['name' => $product['name']],
+                array_merge($product, [
+                    'seller_id' => $sellerId,
+                    'created_at' => $now,
+                    'updated_at' => $now,
+                ])
+            );
+        }
     }
 }
